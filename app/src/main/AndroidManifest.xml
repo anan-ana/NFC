@@ -1,16 +1,17 @@
-<application
-    android:allowBackup="true"
-    android:icon="@android:mipmap/sym_def_app_icon" 
-    android:label="@string/app_name"
-    android:theme="@android:style/Theme.DeviceDefault"> <!-- 使用系統預設主題 -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 關鍵在於下面這行 xmlns:android 的宣告 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <service
-        android:name=".MyHCEService"
-        android:exported="true"
-        android:description="@string/serv_desc"
-        android:permission="android.permission.BIND_NFC_SERVICE">
-        <!-- 保持不變 -->
-    </service>
-    
-    <!-- 其他 Activity 部分保持不變 -->
-</application>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NFC">
+        
+        <!-- 你的 Activity 和 Service 內容 -->
+        
+    </application>
+
+</manifest>
