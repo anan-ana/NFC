@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.NFCWallet" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- 主色調定義 -->
-        <item name="colorPrimary">#6200EE</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-    </style>
+    <style name="Theme.NFCWallet" parent="Theme.MaterialComponents.DayNight.DarkActionBar" />
 </resources>

@@ -1,51 +1,45 @@
-package com.lin.nfcwallet
+package com.nfc.wallet
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.nfc.NfcAdapter
-import android.nfc.Tag
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Gravity
-import android.graphics.Color
 
 class MainActivity : AppCompatActivity() {
 
     private var nfcAdapter: NfcAdapter? = null
-    private lateinit var statusText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // 動態建立簡單精美的 UI
-        statusText = TextView(this).apply {
-            text = "請將 NFC 卡片貼近手機背面"
-            textSize = 20f
-            setTextColor(Color.BLACK)
-            gravity = Gravity.CENTER
-        }
-        setContentView(statusText)
+        super.onCreate(savedInstanceState: Bundle?)
+        
+        // 建立一個簡單的動態介面，免去處理 layout XML 的麻煩
+        val textView = TextView(this)
+        textView.text = "請將 NFC 卡片貼近手機"
+        textView.textSize = 24f
+        setContentView(textView)
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
     }
 
     override fun onResume() {
         super.onResume()
-        // 啟用前台調度，確保 App 開啟時優先攔截 NFC 信號
-        nfcAdapter?.enableReaderMode(this, { tag ->
-            runOnUiThread {
-                handleTag(tag)
-            }
-        }, NfcAdapter.FLAG_READER_NFC_A or NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK, null)
-    }
-
-    private fun handleTag(tag: Tag) {
-        val id = tag.id.joinToString(":") { "%02X".format(it) }
-        statusText.text = "感應成功！\n卡片編號：$id\n錢包餘額：$100.00"
-        statusText.setTextColor(Color.parseColor("#4CAF50")) // 成功綠
+        val intent = Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+        nfcAdapter?.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
     override fun onPause() {
         super.onPause()
-        nfcAdapter?.disableReaderMode(this)
+        nfcAdapter?.disableForegroundDispatch(this)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (NfcAdapter.ACTION_TAG_DISCOVERED == intent.action) {
+            // 這裡處理偵測到卡片後的邏輯
+            setContentView(TextView(this).apply { text = "偵測到 NFC 卡片！" })
+        }
     }
 }
