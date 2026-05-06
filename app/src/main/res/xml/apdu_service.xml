@@ -4,7 +4,7 @@
     android:requireDeviceUnlock="false">
     <aid-group
         android:category="other"
-        android:description="NFC Card Simulation">
+        android:description="模擬卡片">
         <aid-filter android:name="F0010203040506" />
     </aid-group>
 </host-apdu-service>
