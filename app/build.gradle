@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.nfc.wallet'
-    compileSdk 34 // 提升至 34 以符合最新安全規範
+    compileSdk 34 // 提升至 34 以解決截圖中的安全性警告
 
     defaultConfig {
         applicationId "com.nfc.wallet"
         minSdk 24
-        targetSdk 34 // 提升至 34，避免 Screenshot_2026-05-06-15-48-51-589_com.android.vending_2.jpg 的警告
+        targetSdk 34 // 解決「專為舊版 Android 打造」的問題
         versionCode 1
         versionName "1.0"
     }
