@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NFC 智慧錢包</string>
-    <!-- 這裡的 name 必須與 apduservice.xml 中的引用一致 -->
-    <string name="servicedesc">NFC 錢包模擬服務</string>
-    <string name="aiddesc">行動支付卡片模擬</string>
+    <!-- 確保以下兩個名稱存在 -->
+    <string name="hce_service_description">NFC 錢包模擬服務</string>
+    <string name="aid_group_description">行動支付卡片模擬</string>
 </resources>

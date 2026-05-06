@@ -6,7 +6,7 @@
     <aid-group
         android:category="other"
         android:description="@string/aid_group_description">
-        <!-- 這是模擬卡片的 AID 識別碼 -->
+        <!-- 模擬卡片的 AID -->
         <aid-filter android:name="F0010203040506" />
     </aid-group>
 </host-apdu-service>
