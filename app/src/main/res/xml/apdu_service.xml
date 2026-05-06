@@ -6,7 +6,8 @@
     <aid-group
         android:category="other"
         android:description="@string/aid_group_description">
-        <!-- 這裡定義模擬卡片的識別碼 -->
+        <!-- F0010203040506 是常見的測試用 AID -->
         <aid-filter android:name="F0010203040506" />
+        <!-- 如果是為了模擬特定讀卡機，這裡的 AID 必須與讀卡機呼叫的一致 -->
     </aid-group>
 </host-apdu-service>
