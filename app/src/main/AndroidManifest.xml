@@ -1,40 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nfc.wallet"> <!-- 請確認 package 名稱與你的專案一致 -->
+<application
+    android:allowBackup="true"
+    android:icon="@android:mipmap/sym_def_app_icon" 
+    android:label="@string/app_name"
+    android:theme="@android:style/Theme.DeviceDefault"> <!-- 使用系統預設主題 -->
 
-    <uses-permission android:name="android.permission.NFC" />
-    <!-- HCE 必備權限 -->
-    <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
-
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/Theme.NFC">
-
-        <!-- 這裡是你剛才覆蓋的 Service 部分 -->
-        <service
-            android:name=".MyHCEService"
-            android:exported="true"
-            android:description="@string/serv_desc"
-            android:permission="android.permission.BIND_NFC_SERVICE">
-            <intent-filter>
-                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.nfc.cardemulation.host_apdu_service"
-                android:resource="@xml/apdu_service" />
-        </service>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+    <service
+        android:name=".MyHCEService"
+        android:exported="true"
+        android:description="@string/serv_desc"
+        android:permission="android.permission.BIND_NFC_SERVICE">
+        <!-- 保持不變 -->
+    </service>
+    
+    <!-- 其他 Activity 部分保持不變 -->
+</application>
