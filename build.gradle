@@ -1,4 +1,3 @@
-// 根目錄 build.gradle
 buildscript {
     ext.kotlin_version = '1.8.20'
     repositories {
@@ -6,14 +5,13 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // 請確認這裡的版本與你的 Gradle 8.0.2 相容
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        // 使用與 Gradle 8.0.2/8.1.0 相容的插件版本
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-// 這裡不要再出現 allprojects 或是 subprojects 的 repositories 設定
-
+// 執行 gradle clean 時會清理 build 資料夾
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

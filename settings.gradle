@@ -6,12 +6,13 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    // 這一行就是引發報錯的源頭，它要求所有 repositories 必須寫在這裡
+    // 強制所有子模組使用這裡定義的倉庫，避免 build.gradle 衝突
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
+
 rootProject.name = "NFCWallet"
 include ':app'
