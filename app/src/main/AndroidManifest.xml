@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nfc.wallet">
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
@@ -19,7 +20,6 @@
             </intent-filter>
         </activity>
 
-        <!-- HCE 模擬服務 -->
         <service
             android:name=".MyHCEService"
             android:exported="true"
@@ -29,7 +29,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.nfc.cardemulation.host_apdu_service"
-                android:resource="@xml/apdu_service" />
+                android:resource="@xml/apduservice" />
         </service>
 
     </application>
