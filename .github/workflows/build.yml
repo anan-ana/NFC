@@ -10,21 +10,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Create Essential Files
-        run: |
-          # 建立 Android 專案最基礎的 settings 和 gradle 屬性
-          echo "rootProject.name = 'NFCWallet'" > settings.gradle
-          echo "include ':app'" >> settings.gradle
-          echo "android.useAndroidX=true" > gradle.properties
-          echo "android.enableJetifier=true" >> gradle.properties
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          # 強制鎖定 Gradle 版本，避免 9.4.1 的不相容問題
+          gradle-version: 8.0
 
-      - name: Build with Gradle
-        run: |
-          # 這裡會自動下載 Gradle 並編譯
-          gradle assembleDebug --stacktrace
+      - name: Build APK
+        # 這裡改用指定版本的 gradle 執行
+        run: gradle :app:assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

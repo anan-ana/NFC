@@ -4,7 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        // 使用更穩定的插件版本
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20'
     }
 }
