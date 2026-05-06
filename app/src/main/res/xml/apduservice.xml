@@ -2,10 +2,8 @@
 <host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/servicedesc"
     android:requireDeviceUnlock="false">
-    
     <aid-group android:category="other" android:description="@string/aiddesc">
-        <!-- 這是模擬卡片的應用程式識別碼 (AID) -->
-        <!-- 如果是為了門禁測試，通常使用以下這個常見的 AID -->
+        <!-- 這是 ISO-DEP 協議常見的 AID，用於啟動 HCE 模擬 -->
         <aid-filter android:name="F0010203040506" />
     </aid-group>
 </host-apdu-service>

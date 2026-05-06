@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NFC Wallet</string>
+    <string name="app_name">NFC 門禁模擬器</string>
+    <string name="servicedesc">門禁模擬背景服務</string>
+    <string name="aiddesc">自定義門禁卡模擬器</string>
 </resources>
