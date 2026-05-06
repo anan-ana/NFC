@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/hce_service_description"
+    android:description="@string/serv_desc"
     android:requireDeviceUnlock="false">
-    
+
     <aid-group
         android:category="other"
-        android:description="@string/aid_group_description">
-        <!-- F0010203040506 是常見的測試用 AID -->
-        <aid-filter android:name="F0010203040506" />
-        <!-- 如果是為了模擬特定讀卡機，這裡的 AID 必須與讀卡機呼叫的一致 -->
+        android:description="@string/aid_desc">
+        <!-- 宣告多組 AID 以增加匹配成功率 -->
+        <!-- 常用的 ISO-7816 測試 AID -->
+        <aid-filter android:name="F0000000031010" />
+        <aid-filter android:name="F222222222" />
+        <!-- 某些酒店與校園系統使用的通用 AID -->
+        <aid-filter android:name="A0000000031010" />
+        <aid-filter android:name="D2760000850101" />
     </aid-group>
 </host-apdu-service>
