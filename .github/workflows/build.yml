@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with: { java-version: '17', distribution: 'temurin' }
+      - run: |
+          echo "rootProject.name = 'NFCWallet'" > settings.gradle
+          echo "include ':app'" >> settings.gradle
+          # 建立一個簡單的 gradlew 觸發器
+          touch gradlew && chmod +x gradlew
+          ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v3
+        with: { name: App, path: app/build/outputs/apk/debug/*.apk }
