@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     private var nfcAdapter: NfcAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState: Bundle?)
+        super.onCreate(savedInstanceState)
         
         val textView = TextView(this)
         textView.text = "請將 NFC 卡片貼近手機"
@@ -25,16 +25,15 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         
-        // 建立 Intent
         val intent = Intent(this, javaClass).apply {
             addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
         
-        // 關鍵修正：顯式定義 flag 避免編譯器類型推斷錯誤
-        val pendingIntentFlags: Int = PendingIntent.FLAG_MUTABLE
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, pendingIntentFlags)
+        // 使用原始整數值 33554432 代表 PendingIntent.FLAG_MUTABLE
+        // 這可以避開編譯器對該常數類型的解析錯誤
+        val flags = 33554432 
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, flags)
         
-        // 啟動前台調度
         nfcAdapter?.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        // 偵測到 NFC 標籤後的行為
         if (NfcAdapter.ACTION_TAG_DISCOVERED == intent.action) {
             val resultTextView = TextView(this).apply {
                 text = "偵測成功：已讀取 NFC 卡片"
