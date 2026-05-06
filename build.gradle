@@ -5,21 +5,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // 確保使用 8.1.0 版本以支援 Android 14 編譯
         classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-// 全域倉庫配置
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-// 清理任務
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -4,25 +4,21 @@ plugins {
 }
 
 android {
-    // 必須與 MainActivity.java 的 package com.nfc.wallet 一致
-    namespace 'com.nfc.wallet' 
-    
-    // 提升編譯版本至 34 以支援 Android 14 的新語法（如 getParcelableExtra）
+    namespace 'com.nfc.wallet'
     compileSdk 34 
 
     defaultConfig {
         applicationId "com.nfc.wallet"
         minSdk 24
-        targetSdk 34 // 確保目標版本為 Android 14
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-        
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false // 開發階段建議關閉，避免小米等系統報錯
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,7 +27,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -41,7 +37,5 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
-    
-    // 確保包含常用的 ConstraintLayout
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }

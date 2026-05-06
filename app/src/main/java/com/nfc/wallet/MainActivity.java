@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         
         Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        // 修正：針對 Android 12+ (API 31+) 設定標記
         int flags;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
@@ -39,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         
-        // 處理感應到的標籤
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction()) ||
             NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
             
-            // 修正：針對 API 33+ 使用新的 getParcelableExtra 方式
             Tag tag;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag.class);
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (tag != null) {
                 String id = bytesToHex(tag.getId());
-                logText.setText("讀取到 UID: " + id);
+                logText.setText("感應成功！\nUID: " + id);
             }
         }
     }
@@ -69,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (nfcAdapter != null) {
-            // 開啟前台調度
             nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
         }
     }
@@ -78,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (nfcAdapter != null) {
-            // 關閉前台調度
             nfcAdapter.disableForegroundDispatch(this);
         }
     }
