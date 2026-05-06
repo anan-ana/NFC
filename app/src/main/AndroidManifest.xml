@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nfc.wallet">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.NFC" />
-    <!-- 宣告 HCE 模擬功能 -->
     <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
 
     <application
@@ -21,7 +19,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 註冊 HCE 服務，讓手機可以被讀卡機感應 -->
         <service
             android:name=".MyHCEService"
             android:exported="true"

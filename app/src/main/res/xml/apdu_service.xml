@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="NFC 模擬服務"
+    android:description="NFC Wallet Simulation"
     android:requireDeviceUnlock="false">
-    <aid-group android:category="other">
-        <!-- 這裡宣告支援的 AID，F0010203040506 是通用範例 -->
+    <aid-group
+        android:category="other"
+        android:description="模擬卡片">
         <aid-filter android:name="F0010203040506" />
     </aid-group>
 </host-apdu-service>

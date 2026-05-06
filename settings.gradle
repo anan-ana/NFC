@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "NFCWallet"
-include ':app'
+include ':app'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
