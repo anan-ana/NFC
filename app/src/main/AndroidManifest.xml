@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nfc.wallet">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 必須申請 NFC 權限 -->
     <uses-permission android:name="android.permission.NFC" />
-    <!-- 宣告設備必須支援 NFC 才能安裝 -->
     <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
 
     <application
         android:allowBackup="true"
         android:icon="@android:mipmap/sym_def_app_icon"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
 
+        <!-- HCE 服務宣告 -->
         <service
             android:name=".MyHCEService"
             android:exported="true"
             android:description="@string/serv_desc"
             android:permission="android.permission.BIND_NFC_SERVICE">
             
-            <!-- 讓系統知道這是 HCE 服務 -->
             <intent-filter>
                 <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-            <!-- 關鍵：指向剛才建立的 XML -->
             <meta-data
                 android:name="android.nfc.cardemulation.host_apdu_service"
                 android:resource="@xml/apdu_service" />

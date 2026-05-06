@@ -7,7 +7,7 @@
         android:category="other"
         android:description="@string/aid_desc">
         
-        <!-- AID 規則：16進位、偶數長度、10-32字元 -->
+        <!-- 使用私人用途 AID: F0010203040506 (符合偶數長度與十六進位規範) -->
         <aid-filter android:name="F0010203040506" />
         
     </aid-group>

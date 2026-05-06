@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NFC錢包測試</string>
-    <string name="serv_desc">我的虛擬卡片服務</string>
-    <string name="aid_desc">測試用 AID 識別碼</string>
+    <string name="app_name">NFC Wallet</string>
+    <string name="serv_desc">NFC HCE Service</string>
+    <string name="aid_desc">Custom AID Group</string>
 </resources>
