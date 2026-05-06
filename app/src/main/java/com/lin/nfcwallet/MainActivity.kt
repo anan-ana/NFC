@@ -1,4 +1,4 @@
-package com.nfc.wallet
+package com.lin.nfcwallet
 
 import android.app.PendingIntent
 import android.content.Intent
@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState: Bundle?)
         
-        // 建立一個簡單的動態介面，免去處理 layout XML 的麻煩
         val textView = TextView(this)
         textView.text = "請將 NFC 卡片貼近手機"
         textView.textSize = 24f
@@ -26,7 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val intent = Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+        
+        // 修正點：確保 PendingIntent 的 Flag 處理正確
+        val flags = PendingIntent.FLAG_MUTABLE
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, flags)
+        
         nfcAdapter?.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
@@ -38,8 +41,10 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         if (NfcAdapter.ACTION_TAG_DISCOVERED == intent.action) {
-            // 這裡處理偵測到卡片後的邏輯
-            setContentView(TextView(this).apply { text = "偵測到 NFC 卡片！" })
+            val textView = TextView(this)
+            textView.text = "偵測到 NFC 卡片！"
+            textView.textSize = 24f
+            setContentView(textView)
         }
     }
 }
