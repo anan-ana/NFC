@@ -9,19 +9,22 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          
-      - name: Setup Android Project Structure
+
+      - name: Create Essential Files
         run: |
-          # 自動生成必要的專案結構
+          # 建立 Android 專案最基礎的 settings 和 gradle 屬性
           echo "rootProject.name = 'NFCWallet'" > settings.gradle
           echo "include ':app'" >> settings.gradle
-          
-          # 檢查並下載 Gradle 啟動器
-          gradle wrapper
-          chmod +x gradlew
+          echo "android.useAndroidX=true" > gradle.properties
+          echo "android.enableJetifier=true" >> gradle.properties
 
-      - name: Build APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build with Gradle
+        run: |
+          # 這裡會自動下載 Gradle 並編譯
+          gradle assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
