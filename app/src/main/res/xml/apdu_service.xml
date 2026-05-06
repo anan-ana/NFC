@@ -6,12 +6,10 @@
     <aid-group
         android:category="other"
         android:description="@string/aid_desc">
-        <!-- 宣告多組 AID 以增加匹配成功率 -->
-        <!-- 常用的 ISO-7816 測試 AID -->
-        <aid-filter android:name="F0000000031010" />
-        <aid-filter android:name="F222222222" />
-        <!-- 某些酒店與校園系統使用的通用 AID -->
-        <aid-filter android:name="A0000000031010" />
-        <aid-filter android:name="D2760000850101" />
+        
+        <!-- AID 規則：16進位、偶數長度、10-32字元 -->
+        <aid-filter android:name="F0010203040506" />
+        
     </aid-group>
+
 </host-apdu-service>

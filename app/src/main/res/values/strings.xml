@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">NFC Wallet</string>
-    <!-- 補上這個缺失的資源 -->
-    <string name="serv_desc">My Campus HCE Service</string>
-    <string name="aid_desc">Campus Card AID</string>
+    <string name="app_name">NFC錢包測試</string>
+    <string name="serv_desc">我的虛擬卡片服務</string>
+    <string name="aid_desc">測試用 AID 識別碼</string>
 </resources>
