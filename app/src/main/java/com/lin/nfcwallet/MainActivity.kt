@@ -24,12 +24,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val intent = Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         
-        // 修正點：確保 PendingIntent 的 Flag 處理正確
-        val flags = PendingIntent.FLAG_MUTABLE
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, flags)
+        // 建立 Intent
+        val intent = Intent(this, javaClass).apply {
+            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
         
+        // 關鍵修正：顯式定義 flag 避免編譯器類型推斷錯誤
+        val pendingIntentFlags: Int = PendingIntent.FLAG_MUTABLE
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, pendingIntentFlags)
+        
+        // 啟動前台調度
         nfcAdapter?.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
@@ -40,11 +45,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        // 偵測到 NFC 標籤後的行為
         if (NfcAdapter.ACTION_TAG_DISCOVERED == intent.action) {
-            val textView = TextView(this)
-            textView.text = "偵測到 NFC 卡片！"
-            textView.textSize = 24f
-            setContentView(textView)
+            val resultTextView = TextView(this).apply {
+                text = "偵測成功：已讀取 NFC 卡片"
+                textSize = 24f
+            }
+            setContentView(resultTextView)
         }
     }
 }
