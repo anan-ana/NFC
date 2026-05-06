@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (tag != null) {
                 String id = bytesToHex(tag.getId());
-                logText.setText("感應成功！\nUID: " + id);
+                logText.setText("感應成功！\n卡片 UID: " + id);
             }
         }
     }
