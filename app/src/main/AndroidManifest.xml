@@ -6,7 +6,6 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="智能NFC錢包"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         
@@ -17,7 +16,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!-- 增加 NFC 偵測過濾器 -->
+            
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
