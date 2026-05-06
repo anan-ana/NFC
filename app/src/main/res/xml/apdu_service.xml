@@ -1,0 +1,8 @@
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="NFC 模擬服務"
+    android:requireDeviceUnlock="false">
+    <aid-group android:category="other">
+        <!-- 這裡宣告支援的 AID，F0010203040506 是通用範例 -->
+        <aid-filter android:name="F0010203040506" />
+    </aid-group>
+</host-apdu-service>
