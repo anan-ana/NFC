@@ -26,4 +26,6 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    // 確保有這一行，系統才能識別常用 UI 元件
+    implementation 'com.google.android.material:material:1.8.0'
 }

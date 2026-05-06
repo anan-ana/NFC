@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.NFCWallet" parent="Theme.MaterialComponents.DayNight.DarkActionBar" />
+    <!-- 定義一個名為 Theme.NFCWallet 的主題 -->
+    <style name="Theme.NFCWallet" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 這裡可以自訂顏色，目前維持預設 -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <item name="colorAccent">#FF4081</item>
+    </style>
 </resources>

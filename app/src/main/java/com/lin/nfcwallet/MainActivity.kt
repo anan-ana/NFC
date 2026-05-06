@@ -9,11 +9,14 @@ import android.graphics.Color
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // 建立簡單的介面顯示狀態
         val tv = TextView(this).apply {
-            text = "NFC 智慧錢包\n\n服務運作中\n請將手機靠近讀卡機"
-            textSize = 22f
-            setTextColor(Color.BLACK)
+            text = "NFC 智慧錢包\n\n服務已啟動\n請靠近讀卡機測試"
+            textSize = 24f
+            setTextColor(Color.parseColor("#2196F3"))
             gravity = Gravity.CENTER
+            setPadding(50, 50, 50, 50)
         }
         setContentView(tv)
     }

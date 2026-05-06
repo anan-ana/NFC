@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="NFC 智慧錢包"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.NFCWallet">
 
         <activity
             android:name=".MainActivity"
