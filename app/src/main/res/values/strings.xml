@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NFC 門禁模擬器</string>
-    <string name="servicedesc">門禁模擬背景服務</string>
-    <string name="aiddesc">自定義門禁卡模擬器</string>
+    <string name="app_name">NFC 門禁小助手</string>
+    <string name="servicedesc">門禁卡模擬服務</string>
+    <string name="aiddesc">自定義 AID 識別</string>
 </resources>
