@@ -1,4 +1,4 @@
-package com.lin.nfcwallet
+package com.nfc.wallet  // 確保此行與 build.gradle 的 namespace 一致
 
 import android.app.PendingIntent
 import android.content.Intent
@@ -8,8 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-// 這是解決 "Unresolved reference: R" 的關鍵
-import com.lin.nfcwallet.R 
+import com.nfc.wallet.R // 明確導入 R 檔案以解決編譯錯誤
 
 class MainActivity : AppCompatActivity() {
     private var nfcAdapter: NfcAdapter? = null
@@ -18,16 +17,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 確保你的 res/layout 目錄下有 activity_main.xml
         setContentView(R.layout.activity_main)
         
-        // 確保 activity_main.xml 中有一個 TextView 的 id 是 logText
         logText = findViewById(R.id.logText)
-
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
 
-        // 初始化 PendingIntent，讓 App 在前台時能攔截 NFC 訊號
+        // 設定觸發感應後回傳到此 Activity 的 Intent
         val intent = Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        
+        // 處理 Android 12+ 的 PendingIntent 安全性要求
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         } else {
@@ -39,22 +37,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // 啟動前台調度 (Foreground Dispatch)
+        // 啟用前台感應
         nfcAdapter?.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
     override fun onPause() {
         super.onPause()
-        // 暫停時關閉前台調度
+        // 關閉前台感應，釋放系統資源
         nfcAdapter?.disableForegroundDispatch(this)
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        // 檢查是否為 NFC 感應事件
+        // 判定 Intent 是否來自 NFC 標籤
         if (NfcAdapter.ACTION_TAG_DISCOVERED == intent.action || 
             NfcAdapter.ACTION_TECH_DISCOVERED == intent.action) {
             
+            // 讀取 NFC Tag 資料
             val tag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
             } else {
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 將 Byte 陣列轉換為十六進制字串 (例如卡片 ID)
+    // 將二進位 UID 轉為易讀的十六進制字串
     private fun bytesToHex(bytes: ByteArray?): String {
         if (bytes == null) return ""
         val sb = StringBuilder()
