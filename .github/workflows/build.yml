@@ -13,14 +13,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup and Build with Gradle
+        uses: gradle/gradle-build-action@v2
         with:
-          gradle-version: 8.0.2 # 使用確切的版號
-
-      - name: Build Debug APK
-        run: gradle assembleDebug --stacktrace
-
+          gradle-version: 8.0.2
+          arguments: assembleDebug --stacktrace
+          
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
